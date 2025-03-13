@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Contact Information Viewer and Editor">
+        <div class="slds-grid">
+            <!-- Contact List -->
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-button label="Refresh" onclick={handleRefresh}></lightning-button>
+                <ul class="slds-box">
+                    <template if:true={contacts}>
+                        <template for:each={contacts} for:item="contact">
+                            <li key={contact.Id} onclick={handleSelectContact}>
+                                <a href="javascript:void(0)" data-id={contact.Id}>{contact.FirstName} {contact.LastName}</a>
+                            </li>
+                        </template>
+                    </template>
+                    <template if:false={contacts}>
+                        <p>No contacts found or error loading contacts.</p>
+                    </template>
+                </ul>
+            </div>
+
+            <!-- Contact Details Form -->
+            <div class="slds-col slds-size_2-of-3">
+                <template if:true={selectedContact}>
+                    <lightning-input label="First Name" value={selectedContact.FirstName} data-field="FirstName" onchange={handleInputChange}></lightning-input>
+                    <lightning-input label="Last Name" value={selectedContact.LastName} data-field="LastName" onchange={handleInputChange}></lightning-input>
+                    <lightning-input label="Email" value={selectedContact.Email} data-field="Email" onchange={handleInputChange}></lightning-input>
+                    <lightning-input label="Phone" value={selectedContact.Phone} data-field="Phone" onchange={handleInputChange}></lightning-input>
+                </template>
+                <template if:false={selectedContact}>
+                    <p>Select a contact to view details.</p>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

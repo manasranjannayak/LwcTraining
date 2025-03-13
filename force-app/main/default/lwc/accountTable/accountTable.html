@@ -1,0 +1,101 @@
+<template>
+    <lightning-card title="Account List">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Search by Name" value={searchKey} onchange={handleSearchChange}></lightning-input>
+        </div>
+        <lightning-spinner if:true={isLoading}></lightning-spinner>
+       
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Name" onclick={sortByName}></lightning-button>
+                    </th>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Phone" onclick={sortByPhone}></lightning-button>
+                    </th>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Industry" onclick={sortByIndustry}></lightning-button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accounts} for:item="acc">
+                    <tr key={acc.Id}>
+                        <td>
+                            <lightning-input value={acc.Name} onchange={handleEdit} data-id={acc.Id} data-field="Name"></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input value={acc.Phone} onchange={handleEdit} data-id={acc.Id} data-field="Phone"></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input value={acc.Industry} onchange={handleEdit} data-id={acc.Id} data-field="Industry"></lightning-input>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+       
+        <div class="slds-m-top_medium">
+            <lightning-button-group>
+                <lightning-button label="First" onclick={goToFirstPage} disabled={disableFirst}></lightning-button>
+                <lightning-button label="Previous" onclick={goToPreviousPage} disabled={disablePrevious}></lightning-button>
+                <lightning-button label="Next" onclick={goToNextPage} disabled={disableNext}></lightning-button>
+                <lightning-button label="Last" onclick={goToLastPage} disabled={disableLast}></lightning-button>
+            </lightning-button-group>
+        </div>
+        <div class="slds-m-top_medium">
+            <span>Page {currentPage} of {totalPages}</span>
+        </div>
+    </lightning-card>
+</template>
+<!-- 
+<template>
+    <lightning-card title="Account List">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Search by Name" value={searchKey} onchange={handleSearchChange}></lightning-input>
+        </div>
+        <lightning-spinner if:true={isLoading}></lightning-spinner>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Name" onclick={sortByName}></lightning-button>
+                    </th>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Phone" onclick={sortByPhone}></lightning-button>
+                    </th>
+                    <th scope="col">
+                        <lightning-button variant="base" label="Industry" onclick={sortByIndustry}></lightning-button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accounts} for:item="acc">
+                    <tr key={acc.Id}>
+                        <td>
+                            <lightning-input value={acc.Name} onchange={handleEdit} data-id={acc.Id} data-field="Name"></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input value={acc.Phone} onchange={handleEdit} data-id={acc.Id} data-field="Phone"></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input value={acc.Industry} onchange={handleEdit} data-id={acc.Id} data-field="Industry"></lightning-input>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+
+        <div class="slds-m-top_medium">
+            <lightning-button-group>
+                <lightning-button label="First" onclick={goToFirstPage} disabled={disableFirst}></lightning-button>
+                <lightning-button label="Previous" onclick={goToPreviousPage} disabled={disablePrevious}></lightning-button>
+                <lightning-button label="Next" onclick={goToNextPage} disabled={disableNext}></lightning-button>
+                <lightning-button label="Last" onclick={goToLastPage} disabled={disableLast}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </lightning-card>
+</template> -->
+

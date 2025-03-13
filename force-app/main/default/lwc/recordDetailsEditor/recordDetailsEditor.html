@@ -1,0 +1,46 @@
+
+    <template>
+        <lightning-card title="Edit Account Record" icon-name="standard:account">
+            <div class="slds-m-around_medium">
+                <template if:true={recordData}>
+                    <lightning-input
+                        label="Account Name"
+                        data-field="Name"
+                        class="editable-field"
+                        value={recordData.fields.Name.value}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+    
+                    <lightning-input
+                        label="Phone"
+                        data-field="Phone"
+                        class="editable-field"
+                        value={recordData.fields.Phone.value}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+    
+                    <lightning-input
+                        label="Industry"
+                        data-field="Industry"
+                        class="editable-field"
+                        value={recordData.fields.Industry.value}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+    
+                    <lightning-button
+                        label="Save"
+                        onclick={saveRecord}
+                        class="slds-m-top_medium"
+                        variant="brand"
+                        disabled={isSaving}>
+                    </lightning-button>
+                </template>
+    
+                <template if:true={error}>
+                    <p class="slds-text-color_error">{error}</p>
+                </template>
+            </div>
+        </lightning-card>
+    </template>

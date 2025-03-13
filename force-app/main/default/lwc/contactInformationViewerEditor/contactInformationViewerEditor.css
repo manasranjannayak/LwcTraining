@@ -1,0 +1,16 @@
+.slds-grid {
+    margin: 1rem;
+}
+
+.slds-col {
+    padding: 0.5rem;
+}
+
+.slds-box {
+    list-style: none;
+    padding: 0;
+}
+
+.slds-box li {
+    margin: 0.5rem 0;
+}

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="List of leads">
+        <template if:true={leads.data}>
+            <lightning-datatable
+                key-field="Id"
+                data={leads.data}
+                columns={columns}></lightning-datatable>
+        </template>
+        <template if:true={leads.error}>
+            <c-error-panel errors={leads.error}></c-error-panel>
+        </template>
+    </lightning-card>
+</template>

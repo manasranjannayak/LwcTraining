@@ -1,0 +1,66 @@
+<template>
+    <lightning-card title="Todo List">
+        <!-- Clear List Button Moved to Top Right -->
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+            <div></div>
+            <div class="slds-m-right_large">
+                <lightning-button label="Clear List" variant="neutral" onclick={clearList}></lightning-button>
+            </div>
+        </div>
+ 
+        <!-- Input field and Add Button Centered -->
+        <div class="slds-grid slds-grid_align-center slds-m-around_large">
+            <lightning-input
+                label="Enter an item you need to do."
+                value={newTask}
+                onchange={handleInputChange}
+                placeholder="Become Salesforce Developer">
+            </lightning-input>
+            <lightning-button
+                label="Add"
+                variant="brand"
+                onclick={addTask}
+                class="slds-m-left_small">
+            </lightning-button>
+        </div>
+        <!-- Task List -->
+<template if:true={tasks}>
+    <p class="slds-text-heading_medium slds-m-around_medium">You can do anything as long as it's in a list</p>
+    <template for:each={tasks} for:item="task">
+        <div key={task.id} class="slds-box slds-box_x-small">
+            <lightning-layout vertical-align="center">
+                <lightning-layout-item size="10">
+                    <p class="slds-text-heading_small">
+                        Task: <span class={task.cssClass}>{task.name}</span> Id: {task.id}
+                    </p>
+                </lightning-layout-item>
+                <lightning-layout-item size="1">
+                    <lightning-button
+                        class="custom-check slds-m-right_large"
+                        icon-name="utility:check"
+                        alternative-text="Complete Task"
+                        onclick={completeTask}
+                        data-id={task.id}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="1">
+                    <lightning-button
+                        class="custom-check slds-m-right_large"
+                        icon-name="utility:delete"
+                        variant="destructive"
+                        alternative-text="Delete Task"
+                        onclick={deleteTask}
+                        data-id={task.id}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
+</template>
+
+ 
+        <template if:false={tasks}>
+            <p class="slds-text-color_error slds-m-around_medium">No tasks available</p>
+        </template>
+    </lightning-card>
+</template>

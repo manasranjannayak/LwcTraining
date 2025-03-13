@@ -1,0 +1,48 @@
+<template>
+    <!-- Lightning card to display the survey question form -->
+    <lightning-card title="Enter Survey Questions" icon-name="action:question_post_action">
+       
+        <!-- Padding around the combobox input for category selection -->
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                label="Select The Category"
+                value={selectedCategory}
+                options={categoryOptions}
+                onchange={handleCategoryChange}>
+            </lightning-combobox>
+        </div>
+ 
+        <!-- Loop through the list of survey questions -->
+        <template for:each={questions} for:item="question" for:index="index">
+            <div key={question.id} class="slds-p-around_medium">
+                <lightning-input
+                    label="Question For Survey"
+                    data-id={question.id}
+                    value={question.text}
+                    onchange={handleQuestionChange}
+                    placeholder="Please enter the question"
+                    required>
+                </lightning-input>
+            </div>
+        </template>
+ 
+       
+        <!-- Button to add a new question to the list -->
+        <lightning-button
+            style="margin-right: 15px"
+            label="Add Question"
+            onclick={addQuestion}
+            class="slds-m-top_small">
+        </lightning-button>
+       
+ 
+        <!-- Button to save all the entered questions -->
+        <lightning-button
+            label="Save Questions"
+            onclick={validateAndSaveQuestions}
+            class="slds-m-top_small"
+            variant="brand">
+        </lightning-button>
+    </lightning-card>
+</template>
+
