@@ -53,7 +53,7 @@ export default class BmiCalculator extends LightningElement {
         this.result = '';
     }
 }
-
+//Manas
 
 
 
